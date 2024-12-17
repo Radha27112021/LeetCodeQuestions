@@ -1,14 +1,19 @@
 class Solution {
 public:
-    int addDigits(int num) {
-        int count=0;
-        while(num){
-            count+=(num%10);
-            num/=10;
+    string addBinary(string a, string b) {
+        string ans;
+        int carry=0;
+        int i=a.length()-1;
+        int j=b.length()-1;
+        while(i>=0 || j>=0 || carry){
+            if(i>=0)
+            carry+=a[i--]-'0';
+            if(j>=0)
+            carry+=b[j--]-'0';
+            ans+=carry%2+'0';
+            carry/=2;
         }
-        if(count<10)
-        return count;
-        else 
-        return addDigits(count);
+        reverse(begin(ans),end(ans));
+        return ans;
     }
 };
